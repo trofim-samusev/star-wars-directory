@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import useSWR from 'swr';
 
 import { BASE_URL } from '../../../../common/constants';
@@ -12,11 +13,19 @@ type Response = {
 };
 
 export const usePeople = () => {
-  const { data, error } = useSWR<Response>(`${BASE_URL}/people`, fetcher);
+  const [page, setPage] = useState(1);
+  const { data, error } = useSWR<Response>(
+    `${BASE_URL}/people?page=${page}`,
+    fetcher
+  );
+  const pagesCount = data?.count ? Math.ceil(data.count / 10) : 0;
 
   return {
     people: data?.results,
     isLoading: !error && !data,
     error,
+    pagesCount,
+    page,
+    setPage,
   };
 };
