@@ -1,6 +1,6 @@
 import { Box, Skeleton } from '@mui/material';
 
-const CARDS_AMOUNT = 9;
+const CARDS_AMOUNT = 10;
 
 export const PeopleLoading = () => {
   return (
