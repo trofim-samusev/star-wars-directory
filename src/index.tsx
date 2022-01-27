@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import { MuiProvider } from './MuiProvider';
 import { Router } from './Router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <MuiProvider>
+      <Router />
+    </MuiProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
