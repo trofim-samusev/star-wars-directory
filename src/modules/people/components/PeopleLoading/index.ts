@@ -1,0 +1,1 @@
+export { PeopleLoading } from './PeopleLoading';

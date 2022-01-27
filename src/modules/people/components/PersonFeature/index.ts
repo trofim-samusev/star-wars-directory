@@ -1,0 +1,1 @@
+export { PersonFeature } from './PersonFeature';
