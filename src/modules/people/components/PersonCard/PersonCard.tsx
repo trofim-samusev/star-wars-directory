@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 import {
   getGenderTitle,
+  getPersonMassTitle,
   getBirthYearTooltipTitle,
   getPersonHairColorTitle,
   getPersonId,
@@ -39,7 +40,7 @@ export const PersonCard = (props: Props) => {
           ) : null}
         </PersonFeature>
         <PersonFeature title="Height:" value={`📏 ${person.height} cm`} />
-        <PersonFeature title="Mass:" value={`⚖️ ${person.mass} kg`} />
+        <PersonFeature title="Mass:" value={getPersonMassTitle(person.mass)} />
         <PersonFeature title="Eyes:" value={`👀 ${person.eye_color}`} />
         <PersonFeature
           title="Hair:"
