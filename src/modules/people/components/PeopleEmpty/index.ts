@@ -1,0 +1,1 @@
+export { PeopleEmpty } from './PeopleEmpty';
