@@ -1,26 +1,21 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent } from 'react';
 import { Pagination } from '@mui/material';
+import { usePeopleContext } from '../PeopleContext/usePeopleContext';
 
-type Props = {
-  count?: number;
-  page: number;
-  setPage: Dispatch<SetStateAction<number>>;
-};
-
-export const PeopleListPagination = (props: Props) => {
-  const { count, page, setPage } = props;
+export const PeopleListPagination = () => {
+  const { pagesCount, page, setPage } = usePeopleContext();
   const handleChange = (_: ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
-  if (!count) {
+  if (!pagesCount) {
     return null;
   }
 
   return (
     <Pagination
       sx={{ marginTop: 4 }}
-      count={count}
+      count={pagesCount}
       page={page}
       onChange={handleChange}
     />

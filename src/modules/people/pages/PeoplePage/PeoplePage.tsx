@@ -1,25 +1,22 @@
 import { Typography } from '@mui/material';
 
 import { ErrorAlert } from '../../../../common/components/ErrorAlert';
+import { PeopleContextProvider } from '../../components/PeopleContext';
 import { PeopleLoading } from '../../components/PeopleLoading';
+import { PeopleSearchForm } from '../../components/PeopleSearchForm';
 import { PeopleList } from '../../components/PeopleList';
 import { PeopleListPagination } from '../../components/PeopleListPagination';
-import { usePeople } from './usePeople';
+import { usePeopleContext } from '../../components/PeopleContext/usePeopleContext';
 
-export const PeoplePage = () => {
-  const { isLoading, error, people, pagesCount, page, setPage } = usePeople();
-
-  const title = (
-    <Typography align="center" variant="h1" gutterBottom>
-      People from Star Wars
-    </Typography>
-  );
+const PeopleMain = () => {
+  const { isLoading, error, people } = usePeopleContext();
 
   if (isLoading) {
     return (
       <>
-        {title}
+        <PeopleSearchForm isDisabled />
         <PeopleLoading />
+        <PeopleListPagination />
       </>
     );
   }
@@ -31,16 +28,23 @@ export const PeoplePage = () => {
   if (people) {
     return (
       <>
-        {title}
+        <PeopleSearchForm />
         <PeopleList people={people} />
-        <PeopleListPagination
-          count={pagesCount}
-          page={page}
-          setPage={setPage}
-        />
+        <PeopleListPagination />
       </>
     );
   }
 
   return null;
+};
+
+export const PeoplePage = () => {
+  return (
+    <PeopleContextProvider>
+      <Typography align="center" variant="h1" gutterBottom>
+        People from Star Wars
+      </Typography>
+      <PeopleMain />
+    </PeopleContextProvider>
+  );
 };

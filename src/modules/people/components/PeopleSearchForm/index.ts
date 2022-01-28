@@ -1,0 +1,1 @@
+export { PeopleSearchForm } from './PeopleSearchForm';
